@@ -1,6 +1,6 @@
 import React from "react";
 
-const SearchArea = () => {
+const SearchArea = props => {
     return (
         <div className="container">
             <div className="row">
@@ -10,6 +10,7 @@ const SearchArea = () => {
                             id="searchMovie"
                             type="text"
                             className="validate"
+                            onChange={props.onSearchFieldChange}
                         />
                         <label htmlFor="searchMovie">Search movie</label>
                     </div>
@@ -18,7 +19,7 @@ const SearchArea = () => {
                             className="btn waves-effect waves-light red lighten-2"
                             type="submit"
                         >
-                            Search<i class="material-icons right">search</i>
+                            Search<i className="material-icons right">search</i>
                         </button>
                     </div>
                 </form>

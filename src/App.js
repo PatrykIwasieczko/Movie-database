@@ -8,11 +8,15 @@ class App extends Component {
         movies: [],
         searchTerm: ""
     };
+
+    onSearchFieldChange = e => {
+        this.setState({ searchTerm: e.target.value });
+    };
     render() {
         return (
             <div className="App">
                 <Navbar />
-                <SearchArea />
+                <SearchArea onSearchFieldChange={this.onSearchFieldChange} />
             </div>
         );
     }
