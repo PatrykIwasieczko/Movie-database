@@ -9,6 +9,20 @@ class App extends Component {
         searchTerm: ""
     };
 
+    onSearchSubmit = e => {
+        e.preventDefault();
+        fetch(
+            `https://api.themoviedb.org/3/search/movie?api_key=3721a53d7049a8d337b213c8bf5f49b2&query=${
+                this.state.searchTerm
+            }`
+        )
+            .then(data => data.json())
+            .then(data => {
+                console.log(data);
+                this.setState({ movies: [...data.results] });
+            });
+    };
+
     onSearchFieldChange = e => {
         this.setState({ searchTerm: e.target.value });
     };
@@ -16,7 +30,10 @@ class App extends Component {
         return (
             <div className="App">
                 <Navbar />
-                <SearchArea onSearchFieldChange={this.onSearchFieldChange} />
+                <SearchArea
+                    onSearchSubmit={this.onSearchSubmit}
+                    onSearchFieldChange={this.onSearchFieldChange}
+                />
             </div>
         );
     }

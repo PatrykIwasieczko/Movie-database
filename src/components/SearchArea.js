@@ -4,7 +4,7 @@ const SearchArea = props => {
     return (
         <div className="container">
             <div className="row">
-                <form>
+                <form onSubmit={props.onSearchSubmit}>
                     <div className="input-field col s8 l4 offset-l3">
                         <input
                             id="searchMovie"
