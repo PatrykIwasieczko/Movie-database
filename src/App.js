@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Navbar from "./components/Navbar";
 import SearchArea from "./components/SearchArea";
+import MovieList from "./components/MovieList";
 import "./App.css";
 
 class App extends Component {
@@ -34,6 +35,7 @@ class App extends Component {
                     onSearchSubmit={this.onSearchSubmit}
                     onSearchFieldChange={this.onSearchFieldChange}
                 />
+                <MovieList movies={this.state.movies} />
             </div>
         );
     }
