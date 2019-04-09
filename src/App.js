@@ -4,6 +4,10 @@ import SearchArea from "./components/SearchArea";
 import "./App.css";
 
 class App extends Component {
+    state = {
+        movies: [],
+        searchTerm: ""
+    };
     render() {
         return (
             <div className="App">
