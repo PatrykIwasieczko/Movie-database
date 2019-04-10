@@ -11,6 +11,7 @@ const MovieList = props => {
                             <MovieCard
                                 key={id}
                                 image={movie.poster_path}
+                                onViewMovieDetails={props.onViewMovieDetails}
                                 movieId={movie.id}
                                 title={movie.title}
                             />
