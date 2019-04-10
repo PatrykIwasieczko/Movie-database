@@ -2,12 +2,14 @@ import React, { Component } from "react";
 import Navbar from "./components/Navbar";
 import SearchArea from "./components/SearchArea";
 import MovieList from "./components/MovieList";
+import MovieDetails from "./components/MovieDetails";
 import "./App.css";
 
 class App extends Component {
     state = {
         movies: [],
-        searchTerm: ""
+        searchTerm: "",
+        currentMovie: null
     };
 
     onSearchSubmit = e => {
@@ -27,15 +29,43 @@ class App extends Component {
     onSearchFieldChange = e => {
         this.setState({ searchTerm: e.target.value });
     };
+
+    onViewMovieDetails = id => {
+        let filteredMovie;
+        this.state.movies.forEach((movie, i) => {
+            if (movie.id === id) {
+                filteredMovie = movie;
+            }
+        });
+
+        this.setState({ currentMovie: filteredMovie });
+    };
+
+    onCloseMovieDetails = () => {
+        this.setState({ currentMovie: null });
+    };
+
     render() {
         return (
             <div className="App">
                 <Navbar />
-                <SearchArea
-                    onSearchSubmit={this.onSearchSubmit}
-                    onSearchFieldChange={this.onSearchFieldChange}
-                />
-                <MovieList movies={this.state.movies} />
+                {this.state.currentMovie == null ? (
+                    <div>
+                        <SearchArea
+                            onSearchSubmit={this.onSearchSubmit}
+                            onSearchFieldChange={this.onSearchFieldChange}
+                        />
+                        <MovieList
+                            onViewMovieDetails={this.onViewMovieDetails}
+                            movies={this.state.movies}
+                        />
+                    </div>
+                ) : (
+                    <MovieDetails
+                        onCloseMovieDetails={this.onCloseMovieDetails}
+                        currentMovie={this.state.currentMovie}
+                    />
+                )}
             </div>
         );
     }

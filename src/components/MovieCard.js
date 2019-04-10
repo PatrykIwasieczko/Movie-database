@@ -5,7 +5,7 @@ const Movie = props => {
         <div className="col s12 m6 l3">
             <div className="card">
                 <div className="card-image">
-                    {props.image == true ? (
+                    {props.image == null ? (
                         <img
                             className=""
                             src={`https://s3-ap-southeast-1.amazonaws.com/upcode/static/default-image.jpg`}
@@ -21,7 +21,7 @@ const Movie = props => {
                         />
                     )}
                 </div>
-                <div class="card-content">
+                <div className="card-content">
                     <p>
                         <a href="#">View Details</a>
                     </p>

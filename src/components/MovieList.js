@@ -7,7 +7,14 @@ const MovieList = props => {
             <div className="row">
                 <div className="col s12">
                     {props.movies.map((movie, id) => {
-                        return <MovieCard key={id} image={movie.poster_path} />;
+                        return (
+                            <MovieCard
+                                key={id}
+                                image={movie.poster_path}
+                                movieId={movie.id}
+                                title={movie.title}
+                            />
+                        );
                     })}
                 </div>
             </div>
