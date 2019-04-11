@@ -16,7 +16,7 @@ const SearchArea = props => {
                     </div>
                     <div className="input-field col s2">
                         <button
-                            className="btn waves-effect waves-light red lighten-2"
+                            className="btn waves-effect waves-light blue darken-4"
                             type="submit"
                         >
                             Search<i className="material-icons right">search</i>
