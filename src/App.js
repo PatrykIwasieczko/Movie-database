@@ -93,7 +93,7 @@ class App extends Component {
                 this.state.currentMovie == null ? (
                     <Pagination
                         pages={numberPages}
-                        nextPage={this.onViewNextPage}
+                        onViewNextPage={this.onViewNextPage}
                         currentPage={this.state.currentPage}
                     />
                 ) : (
