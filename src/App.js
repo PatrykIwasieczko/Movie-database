@@ -51,7 +51,7 @@ class App extends Component {
         this.setState({ currentMovie: null });
     };
 
-    nextPage = pageNumber => {
+    onViewNextPage = pageNumber => {
         fetch(
             `https://api.themoviedb.org/3/search/movie?api_key=3721a53d7049a8d337b213c8bf5f49b2&query=${
                 this.state.searchTerm
@@ -93,7 +93,7 @@ class App extends Component {
                 this.state.currentMovie == null ? (
                     <Pagination
                         pages={numberPages}
-                        nextPage={this.nextPage}
+                        nextPage={this.onViewNextPage}
                         currentPage={this.state.currentPage}
                     />
                 ) : (
