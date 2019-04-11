@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar";
 import SearchArea from "./components/SearchArea";
 import MovieList from "./components/MovieList";
 import MovieDetails from "./components/MovieDetails";
+import Pagination from "./components/Pagination";
 import "./App.css";
 
 class App extends Component {
@@ -24,7 +25,10 @@ class App extends Component {
             .then(data => data.json())
             .then(data => {
                 console.log(data);
-                this.setState({ movies: [...data.results] });
+                this.setState({
+                    movies: [...data.results],
+                    totalResults: data.total_results
+                });
             });
     };
 
@@ -47,7 +51,24 @@ class App extends Component {
         this.setState({ currentMovie: null });
     };
 
+    nextPage = pageNumber => {
+        fetch(
+            `https://api.themoviedb.org/3/search/movie?api_key=3721a53d7049a8d337b213c8bf5f49b2&query=${
+                this.state.searchTerm
+            }&language=en-US&page=${pageNumber}`
+        )
+            .then(data => data.json())
+            .then(data => {
+                this.setState({
+                    movies: [...data.results],
+                    totalResults: data.total_results,
+                    currentPage: pageNumber
+                });
+            });
+    };
+
     render() {
+        let numberPages = Math.floor(this.state.totalResults / 20);
         return (
             <div className="App">
                 <Navbar />
@@ -67,6 +88,16 @@ class App extends Component {
                         onCloseMovieDetails={this.onCloseMovieDetails}
                         currentMovie={this.state.currentMovie}
                     />
+                )}
+                {this.state.totalResults > 20 &&
+                this.state.currentMovie == null ? (
+                    <Pagination
+                        pages={numberPages}
+                        nextPage={this.nextPage}
+                        currentPage={this.state.currentPage}
+                    />
+                ) : (
+                    ""
                 )}
             </div>
         );
