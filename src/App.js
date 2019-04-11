@@ -9,7 +9,9 @@ class App extends Component {
     state = {
         movies: [],
         searchTerm: "",
-        currentMovie: null
+        currentMovie: null,
+        currentPage: 1,
+        totalResults: 0
     };
 
     onSearchSubmit = e => {

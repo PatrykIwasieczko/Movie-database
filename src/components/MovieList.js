@@ -9,11 +9,12 @@ const MovieList = props => {
                     {props.movies.map((movie, id) => {
                         return (
                             <MovieCard
-                                key={id}
+                                key={movie.id}
                                 image={movie.poster_path}
                                 onViewMovieDetails={props.onViewMovieDetails}
                                 movieId={movie.id}
                                 title={movie.title}
+                                date={movie.release_date}
                             />
                         );
                     })}
